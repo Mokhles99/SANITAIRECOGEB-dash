@@ -1,31 +1,3 @@
-// import React from 'react';
-// import { useDispatch } from 'react-redux';
-// import Select from '@mui/material/Select';
-// import MenuItem from '@mui/material/MenuItem';
-// import { changeUserRole } from '../../actions/users.actions'; // Adjust the import path
-
-// const RoleSelector = ({ userId, role }) => {
-//     const dispatch = useDispatch();
-
-//     const handleChange = (event) => {
-//         const roleId = event.target.value;
-//         dispatch(changeUserRole(userId, roleId));
-//     };
-
-//     return (
-//         <Select
-//             value={role}
-//             onChange={handleChange}
-//             displayEmpty
-//             inputProps={{ 'aria-label': 'Without label' }}
-//         >
-//             <MenuItem value="660c339661e486d580c76b7e">Admin</MenuItem>
-//             <MenuItem value="660c339661e486d580c76b7c">User</MenuItem>
-//         </Select>
-//     );
-// };
-
-// export default RoleSelector;
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -34,7 +6,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { changeUserRole } from '../../actions/users.actions'; // Adjust the import path
-
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 const RoleSelector = ({ userId, currentRole }) => {
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = useState(null);

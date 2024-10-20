@@ -1,23 +1,6 @@
 import { productConstants } from './constantes';
 
-// Action de création de produit
-// export const createProduct = (productData) => (dispatch) => {
-//   dispatch({ type: productConstants.CREATE_PRODUCT_REQUEST });
-//   fetch('http://localhost:8082/product/create', {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify(productData),
-//   })
-//     .then((response) => response.json())
-//     .then((data) => dispatch({
-//       type: productConstants.CREATE_PRODUCT_SUCCESS,
-//       payload: data,
-//     }))
-//     .catch((error) => dispatch({
-//       type: productConstants.CREATE_PRODUCT_FAILURE,
-//       payload: error,
-//     }));
-// };
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const createProduct = (productData) => (dispatch) => {
   dispatch({ type: productConstants.CREATE_PRODUCT_REQUEST });
 
@@ -40,7 +23,7 @@ export const createProduct = (productData) => (dispatch) => {
     });
   }
 
-  fetch('http://localhost:8082/product/create', {
+  fetch(`${BASE_URL}/product/create`, {
     method: 'POST',
     body: formData, // Pas besoin de définir 'Content-Type' pour FormData, le navigateur le fera
   })
@@ -59,7 +42,7 @@ export const createProduct = (productData) => (dispatch) => {
 // Récupérer tous les produits
 export const getAllProducts = () => (dispatch) => {
   dispatch({ type: productConstants.GET_ALL_PRODUCTS_REQUEST });
-  fetch('http://localhost:8082/product/products')
+  fetch(`${BASE_URL}/product/products`)
     .then((response) => response.json())
     .then((data) => dispatch({
       type: productConstants.GET_ALL_PRODUCTS_SUCCESS,
@@ -75,7 +58,7 @@ export const getAllProducts = () => (dispatch) => {
 export const getProductById = (id) => async (dispatch) => {
     dispatch({ type: productConstants.GET_PRODUCT_REQUEST });
     try {
-      const response = await fetch(`http://localhost:8082/product/products/${id}`);
+      const response = await fetch(`${BASE_URL}/product/products/${id}`);
       const data = await response.json();
       dispatch({
         type: productConstants.GET_PRODUCT_SUCCESS,
@@ -89,82 +72,7 @@ export const getProductById = (id) => async (dispatch) => {
     }
   };
 
-// Mettre à jour un produit
-// export const updateProduct = (id, productData) => (dispatch) => {
-//   dispatch({ type: productConstants.UPDATE_PRODUCT_REQUEST });
 
-//   const formData = new FormData();
-//   formData.append('name', productData.name);
-//   formData.append('description', productData.description);
-//   formData.append('type', productData.type);
-
-//   if (productData.files && productData.files.length) {
-//       productData.files.forEach(file => {
-//           formData.append('files', file);
-//       });
-//   }
-
-//   return fetch(`http://localhost:8082/product/update/${id}`, {
-//       method: 'PUT',
-//       body: formData,
-//   })
-//   .then(response => {
-//       if (!response.ok) {
-//           throw new Error('Erreur lors de la mise à jour du produit');
-//       }
-//       return response.json();
-//   })
-//   .then(data => {
-//       dispatch({
-//           type: productConstants.UPDATE_PRODUCT_SUCCESS,
-//           payload: data,
-//       });
-//       return data;
-//   })
-//   .catch(error => {
-//       dispatch({
-//           type: productConstants.UPDATE_PRODUCT_FAILURE,
-//           payload: error.message,
-//       });
-//       throw error;
-//   });
-// };
-
-
-// export const updateProduct = (id, productData) => async (dispatch) => {
-//   dispatch({ type: productConstants.UPDATE_PRODUCT_REQUEST });
-
-//   try {
-//       const response = await fetch(`http://localhost:8082/product/update/${id}`, {
-//           method: 'PUT',
-//           headers: {
-//               'Content-Type': 'application/json',
-//               // Assurez-vous d'inclure le token si l'authentification est nécessaire
-//               // 'Authorization': `Bearer ${token}`
-//           },
-//           body: JSON.stringify(productData)
-//       });
-
-//       if (!response.ok) {
-//           throw new Error('Erreur lors de la mise à jour du produit');
-//       }
-
-//       const updatedProduct = await response.json();
-
-//       dispatch({
-//           type: productConstants.UPDATE_PRODUCT_SUCCESS,
-//           payload: updatedProduct,
-//       });
-
-//       return updatedProduct;
-//   } catch (error) {
-//       dispatch({
-//           type: productConstants.UPDATE_PRODUCT_FAILURE,
-//           payload: error.message,
-//       });
-//       throw error;
-//   }
-// };
 export const updateProduct = (id, productData) => (dispatch) => {
   dispatch({ type: productConstants.UPDATE_PRODUCT_REQUEST });
 
@@ -189,7 +97,7 @@ export const updateProduct = (id, productData) => (dispatch) => {
 
   console.log("FormData to be sent:", Object.fromEntries(formData)); // Display FormData entries
 
-  fetch(`http://localhost:8082/product/update/${id}`, {
+  fetch(`${BASE_URL}/product/update/${id}`, {
       method: 'PUT',
       body: formData,
   })
@@ -227,7 +135,7 @@ export const updateProduct = (id, productData) => (dispatch) => {
 export const deleteProduct = (id) => (dispatch) => {
     dispatch({ type: productConstants.DELETE_PRODUCT_REQUEST });
 
-    fetch(`http://localhost:8082/product/delete/${id}`, {
+    fetch(`${BASE_URL}/product/delete/${id}`, {
         method: 'DELETE',
     })
     .then(response => {
@@ -257,7 +165,7 @@ export const deleteProduct = (id) => (dispatch) => {
 
 export const countProducts = () => (dispatch) => {
   dispatch({ type: productConstants.COUNT_PRODUCTS_REQUEST });
-  fetch('http://localhost:8082/product/count')
+  fetch(`${BASE_URL}/product/count`)
     .then((response) => response.json())
     .then((data) => dispatch({
       type: productConstants.COUNT_PRODUCTS_SUCCESS,

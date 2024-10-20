@@ -8,7 +8,7 @@ import {
 } from "./types";
 
 import AuthService from "../services/auth.service";
-
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const register = (username, email, password) => (dispatch) => {
   return AuthService.register(username, email, password).then(
     (response) => {
