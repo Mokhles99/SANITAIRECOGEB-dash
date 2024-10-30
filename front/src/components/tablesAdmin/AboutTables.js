@@ -68,7 +68,7 @@ const AboutTables = () => {
     aboutFiles.forEach((file) => formData.append('files', file));
 
     try {
-      const response = await fetch(`${BASE_URL}/about/create`, {
+      const response = await fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/about/create`, {
         method: 'POST',
         body: formData
       });
@@ -86,7 +86,7 @@ const AboutTables = () => {
     aboutFiles.forEach((file) => formData.append('files', file));
 
     try {
-      const response = await fetch(`${BASE_URL}/about/update/${selectedAboutId}`, {
+      const response = await fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/about/update/${selectedAboutId}`, {
         method: 'PUT',
         body: formData
       });

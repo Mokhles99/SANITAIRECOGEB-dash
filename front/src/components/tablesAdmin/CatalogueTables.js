@@ -68,7 +68,7 @@ const CatalogueTables = () => {
     catalogueFiles.forEach((file) => formData.append('files', file));
 
     try {
-      const response = await fetch(`${BASE_URL}/catalogue/create`, {
+      const response = await fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/catalogue/create`, {
         method: 'POST',
         body: formData
       });
@@ -86,7 +86,7 @@ const CatalogueTables = () => {
     catalogueFiles.forEach((file) => formData.append('files', file));
 
     try {
-      const response = await fetch(`${BASE_URL}/catalogue/update/${selectedCatalogueId}`, {
+      const response = await fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/catalogue/update/${selectedCatalogueId}`, {
         method: 'PUT',
         body: formData
       });

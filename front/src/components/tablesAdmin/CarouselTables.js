@@ -68,7 +68,7 @@ const CarouselTables = () => {
     carouselFiles.forEach((file) => formData.append('files', file));
 
     try {
-      const response = await fetch(`${BASE_URL}/carousel/create`, {
+      const response = await fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/carousel/create`, {
         method: 'POST',
         body: formData
       });
@@ -86,7 +86,7 @@ const CarouselTables = () => {
     carouselFiles.forEach((file) => formData.append('files', file));
 
     try {
-      const response = await fetch(`${BASE_URL}/carousel/update/${selectedCarouselId}`, {
+      const response = await fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/carousel/update/${selectedCarouselId}`, {
         method: 'PUT',
         body: formData
       });

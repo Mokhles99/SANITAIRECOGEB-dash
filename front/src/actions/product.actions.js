@@ -23,7 +23,7 @@ export const createProduct = (productData) => (dispatch) => {
     });
   }
 
-  fetch(`${BASE_URL}/product/create`, {
+  fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/product/create`, {
     method: 'POST',
     body: formData, // Pas besoin de définir 'Content-Type' pour FormData, le navigateur le fera
   })
@@ -42,7 +42,7 @@ export const createProduct = (productData) => (dispatch) => {
 // Récupérer tous les produits
 export const getAllProducts = () => (dispatch) => {
   dispatch({ type: productConstants.GET_ALL_PRODUCTS_REQUEST });
-  fetch(`${BASE_URL}/product/products`)
+  fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/product/products`)
     .then((response) => response.json())
     .then((data) => dispatch({
       type: productConstants.GET_ALL_PRODUCTS_SUCCESS,
@@ -58,7 +58,7 @@ export const getAllProducts = () => (dispatch) => {
 export const getProductById = (id) => async (dispatch) => {
     dispatch({ type: productConstants.GET_PRODUCT_REQUEST });
     try {
-      const response = await fetch(`${BASE_URL}/product/products/${id}`);
+      const response = await fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/product/products/${id}`);
       const data = await response.json();
       dispatch({
         type: productConstants.GET_PRODUCT_SUCCESS,
@@ -97,7 +97,7 @@ export const updateProduct = (id, productData) => (dispatch) => {
 
   console.log("FormData to be sent:", Object.fromEntries(formData)); // Display FormData entries
 
-  fetch(`${BASE_URL}/product/update/${id}`, {
+  fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/product/update/${id}`, {
       method: 'PUT',
       body: formData,
   })
@@ -135,7 +135,7 @@ export const updateProduct = (id, productData) => (dispatch) => {
 export const deleteProduct = (id) => (dispatch) => {
     dispatch({ type: productConstants.DELETE_PRODUCT_REQUEST });
 
-    fetch(`${BASE_URL}/product/delete/${id}`, {
+    fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/product/delete/${id}`, {
         method: 'DELETE',
     })
     .then(response => {
@@ -165,7 +165,7 @@ export const deleteProduct = (id) => (dispatch) => {
 
 export const countProducts = () => (dispatch) => {
   dispatch({ type: productConstants.COUNT_PRODUCTS_REQUEST });
-  fetch(`${BASE_URL}/product/count`)
+  fetch(`https://us-central1-cogeb-2469c.cloudfunctions.net/api_sanitaire/product/count`)
     .then((response) => response.json())
     .then((data) => dispatch({
       type: productConstants.COUNT_PRODUCTS_SUCCESS,
